@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Red Frontier 3D — Untamed West (Western Open-World)</title>
+<link rel="icon" href="data:,">
+<meta name="description" content="Red Frontier 3D: an original western open-world adventure. Ride, hunt bounties, survive outlaws. Inspired by classic frontier tales.">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": { "three": "./three.module.js" } }
+</script>
+</head>
+<body>
+<div id="game-wrap">
+  <canvas id="game"></canvas>
+  <div id="vignette"></div>
+  <div id="damage-flash"></div>
+  <div id="deadeye-tint"></div>
+
+  <div id="compass"><div id="compass-strip"></div><div id="compass-needle">▲</div></div>
+
+  <div id="hud-top-left">
+    <div class="bar-row"><span class="bar-label">❤</span><div class="bar"><div id="hp-fill" class="fill hp"></div></div></div>
+    <div class="bar-row"><span class="bar-label">⚡</span><div class="bar"><div id="st-fill" class="fill st"></div></div></div>
+    <div class="bar-row"><span class="bar-label">👁</span><div class="bar"><div id="de-fill" class="fill de"></div></div></div>
+    <div id="ammo-row"><span id="ammo-pips"></span><span id="reload-hint"></span></div>
+  </div>
+
+  <div id="hud-top-right">
+    <div id="money">$120</div>
+    <div id="honor">🤠 Honor: Neutral</div>
+    <div id="wanted"></div>
+    <div id="clock">☀ 12:00</div>
+  </div>
+
+  <canvas id="minimap" width="180" height="180"></canvas>
+
+  <div id="objective"><div id="obj-title">★ FRONTIER JUSTICE</div><div id="obj-text">Talk to the Sheriff — follow the ★ marker</div></div>
+  <div id="killfeed"></div>
+  <div id="crosshair"><div id="dot"></div></div>
+  <div id="hitmarker">✕</div>
+  <div id="interact-prompt"></div>
+  <div id="toast"></div>
+  <div id="mission-banner"><h2 id="mb-title"></h2><p id="mb-sub"></p></div>
+
+  <div id="touch-ui">
+    <div id="stick"><div id="stick-knob"></div></div>
+    <div id="touch-btns">
+      <button data-a="fire">🔫</button>
+      <button data-a="mount">🐎</button>
+      <button data-a="run">🏃</button>
+      <button data-a="eye">👁</button>
+    </div>
+  </div>
+
+  <div id="title-screen" class="overlay">
+    <div class="panel western">
+      <div class="kicker">AN ORIGINAL FRONTIER TALE · 3D OPEN WORLD</div>
+      <h1>RED FRONTIER <span>3D</span></h1>
+      <div class="sub">UNTAMED WEST · Dusty Gulch County</div>
+      <p class="lore">Bounty hunters stalk the mesas. The sheriff needs a rider with grit.
+      Mount your horse, track the bandit camps, and bring peace — dead or alive.</p>
+      <button id="play-btn" class="big-btn">Play Game</button>
+      <div class="controls-grid">
+        <div><b>WASD</b> move / ride</div><div><b>Mouse</b> camera · <b>Click</b> shoot</div>
+        <div><b>Shift</b> sprint / gallop</div><div><b>E</b> mount horse · loot</div>
+        <div><b>R</b> reload · <b>Q</b> Dead-Eye</div><div><b>B</b> bribe ($50) · <b>M</b> whistle</div>
+      </div>
+      <div class="fine">Desktop + mouse recommended · Touch supported · Fan-made homage. Not affiliated with Rockstar Games.</div>
+    </div>
+  </div>
+
+  <div id="pause-screen" class="overlay hidden">
+    <div class="panel">
+      <h2>PAUSED</h2>
+      <p>Take a whiskey break, partner.</p>
+      <button id="resume-btn" class="big-btn">Resume</button>
+      <button id="restart-btn" class="ghost-btn">Restart Story</button>
+      <div class="controls-grid">
+        <div><b>WASD</b> move</div><div><b>E</b> interact</div>
+        <div><b>Q</b> dead-eye</div><div><b>P / Esc</b> pause</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="dead-screen" class="overlay hidden">
+    <div class="panel">
+      <h2 class="red">YOU DIED</h2>
+      <p id="dead-sub">The frontier claims another soul.</p>
+      <button id="respawn-btn" class="big-btn">Respawn at Doctor — $20</button>
+    </div>
+  </div>
+
+  <div id="win-screen" class="overlay hidden">
+    <div class="panel">
+      <div class="kicker">★ LEGEND OF THE FRONTIER ★</div>
+      <h2>ALL BOUNTIES CLAIMED</h2>
+      <p id="win-stats"></p>
+      <button id="keep-btn" class="big-btn">Keep Roaming</button>
+    </div>
+  </div>
+
+  <div id="loading">loading frontier…</div>
+</div>
+<script type="module" src="game.js"></script>
+</body>
+</html>
